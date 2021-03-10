@@ -1,11 +1,28 @@
 defmodule ProductivityReport do
   alias ProductivityReport.Parser
 
+  @shallow_fields [:all_hours]
+
+  @deep_fields [:hours_per_month, :hours_per_year]
+
   def build(file_name) do
     file_name
     |> Parser.call()
     |> Enum.reduce(initialize_report(), &accumulate_fields/2)
   end
+
+  def fetch_max_from_field(report, field) when field in @shallow_fields do
+    {:ok, Enum.max_by(report[field], fn {_key, value} -> value end)}
+  end
+
+  def fetch_max_from_field(_report, _field), do: {:error, "Invalid field."}
+
+  def fetch_max_from_deep_field(report, field, sub_field)
+      when field in @deep_fields do
+    {:ok, Enum.max_by(report[field][sub_field], fn {_key, value} -> value end)}
+  end
+
+  def fetch_max_from_deep_field(_report, _field, _sub_field), do: {:error, "Invalid field."}
 
   defp accumulate_fields(line, report) do
     all_hours = accumulate_all_hours(line, report.all_hours)
