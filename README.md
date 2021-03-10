@@ -14,6 +14,22 @@ $ mix credo --strict
 $ mix test
 ```
 
+Generate reports:
+
+```elixir
+> ProductivityReport.build("test_report")
+> ProductivityReport.build("gen_report")
+```
+
+Measuring execution time in microseconds:
+
+```elixir
+> :timer.tc(fn -> ProductivityReport.build("test_report") end)
+> :timer.tc(fn -> ProductivityReport.build("gen_report") end)
+```
+
+Exploring Elixir's syntax:
+
 ```elixir
 > %{a: 1, 2016: 4}
 ** (SyntaxError) iex:1:13: unexpected token: ":" (column 13, code point U+003A)

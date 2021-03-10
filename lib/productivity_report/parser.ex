@@ -1,5 +1,5 @@
 defmodule ProductivityReport.Parser do
-  @months %{
+  @month_to_atom %{
     "1" => :january,
     "2" => :february,
     "3" => :march,
@@ -24,20 +24,22 @@ defmodule ProductivityReport.Parser do
     line
     |> String.trim()
     |> String.split(",")
-    |> List.update_at(0, &doncase_to_atom/1)
-    |> List.update_at(1, &String.to_integer/1)
-    |> List.update_at(2, &String.to_integer/1)
+    |> List.update_at(0, &parse_freelancer/1)
+    |> List.update_at(1, &parse_hours/1)
+    |> List.update_at(2, &parse_day/1)
     |> List.update_at(3, &parse_month/1)
-    |> List.update_at(4, &String.to_integer/1)
+    |> List.update_at(4, &parse_year/1)
   end
 
-  defp doncase_to_atom(string) do
-    string
+  defp parse_freelancer(freelancer_name) do
+    freelancer_name
     |> String.downcase()
     |> String.to_atom()
   end
 
-  defp parse_month(string) do
-    @months[string]
-  end
+  defp parse_hours(hours), do: String.to_integer(hours)
+
+  defp parse_day(day), do: String.to_integer(day)
+  defp parse_month(month), do: @month_to_atom[month]
+  defp parse_year(year), do: String.to_integer(year)
 end
