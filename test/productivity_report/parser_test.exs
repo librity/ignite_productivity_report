@@ -13,16 +13,16 @@ defmodule ProductivityReport.ParserTest do
         |> Enum.map(& &1)
 
       expected = [
-        ["Daniele", 7, "29", "4", "2018"],
-        ["Mayk", 4, "9", "12", "2019"],
-        ["Daniele", 5, "27", "12", "2016"],
-        ["Mayk", 1, "2", "12", "2017"],
-        ["Giuliano", 3, "13", "2", "2017"],
-        ["Cleiton", 1, "22", "6", "2020"],
-        ["Giuliano", 6, "18", "2", "2019"],
-        ["Jakeliny", 8, "18", "7", "2017"],
-        ["Joseph", 3, "17", "3", "2017"],
-        ["Jakeliny", 6, "23", "3", "2019"]
+        [:daniele, 7, 29, :april, 2018],
+        [:mayk, 4, 9, :december, 2019],
+        [:daniele, 5, 27, :december, 2016],
+        [:mayk, 1, 2, :december, 2017],
+        [:giuliano, 3, 13, :february, 2017],
+        [:cleiton, 1, 22, :june, 2020],
+        [:giuliano, 6, 18, :february, 2019],
+        [:jakeliny, 8, 18, :july, 2017],
+        [:joseph, 3, 17, :march, 2017],
+        [:jakeliny, 6, 23, :march, 2019]
       ]
 
       assert return == expected

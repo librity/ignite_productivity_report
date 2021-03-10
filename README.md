@@ -15,7 +15,21 @@ $ mix test
 ```
 
 ```elixir
-
+> %{a: 1, 2016: 4}
+** (SyntaxError) iex:1:13: unexpected token: ":" (column 13, code point U+003A)
+> %{a: 1, "2016": 4}
+%{"2016": 4, a: 1}
+> map = %{:a => 1, 2016 => 4}
+%{2016 => 4, :a => 1}
+> Map.get(map, 2016, :default)
+4
+> Map.get(map, 2017, :default)
+:default
 ```
 
 ## Resources
+
+- https://www.tutorialspoint.com/elixir/elixir_data_types.htm
+- https://stackoverflow.com/questions/43630781/convert-integer-to-atom-in-elixir
+- https://hexdocs.pm/elixir/master/Date.html
+- https://hexdocs.pm/elixir/master/DateTime.html
