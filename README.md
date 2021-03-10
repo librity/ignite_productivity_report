@@ -1,7 +1,8 @@
 # ProductivityReport
 
-A simple module that calculates the size of a list with tail-call-optimized
-recursion.
+A simple Elixir program that generates an employee productivity report from raw CSV data.
+
+CSV colums are parsed as name, hours worked, day, month and year.
 
 ## Commands
 
